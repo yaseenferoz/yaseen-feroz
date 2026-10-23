@@ -1,0 +1,192 @@
+[
+  {
+    "title": "Vue.js",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/f697df3233ee4359939fc99f8e11ceaa",
+    "url": "https://www.testdome.com/certificates/f697df3233ee4359939fc99f8e11ceaa"
+  },
+  {
+    "title": "Node.js",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/4b264ed9d91b433a9ac9a9bd64e00ae7",
+    "url": "https://www.testdome.com/certificates/4b264ed9d91b433a9ac9a9bd64e00ae7"
+  },
+  {
+    "title": "jQuery",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/09ae66cc873b4791af6d893cac8d0df4",
+    "url": "https://www.testdome.com/certificates/09ae66cc873b4791af6d893cac8d0df4"
+  },
+  {
+    "title": "Express.js",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/ff6f1391ebd94a5ab43d7d1ed130d1e1",
+    "url": "https://www.testdome.com/certificates/ff6f1391ebd94a5ab43d7d1ed130d1e1"
+  },
+  {
+    "title": "TypeScript",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/2d71093b93f344de9de9f00f08065465",
+    "url": "https://www.testdome.com/certificates/2d71093b93f344de9de9f00f08065465"
+  },
+  {
+    "title": "JavaScript and Node.js",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/9ff28cd0207e45ab8af54520387f6e61",
+    "url": "https://www.testdome.com/certificates/9ff28cd0207e45ab8af54520387f6e61"
+  },
+  {
+    "title": "JavaScript",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/5663aa75310145bb99fb203d65e27711",
+    "url": "https://www.testdome.com/certificates/5663aa75310145bb99fb203d65e27711"
+  },
+  {
+    "title": "Angular",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/94e2f513b6e44348a0e019c7db7f5d80",
+    "url": "https://www.testdome.com/certificates/94e2f513b6e44348a0e019c7db7f5d80"
+  },
+  {
+    "title": "SQL",
+    "issuer": "TestDome",
+    "issued": "Jan 2025",
+    "credentialId": "www.testdome.com/certificates/e0b3da5d7ad043759bbcfac9cde4a390",
+    "url": "https://www.testdome.com/certificates/e0b3da5d7ad043759bbcfac9cde4a390"
+  },
+  {
+    "title": "Angular (Intermediate)",
+    "issuer": "HackerRank",
+    "issued": "Jan 2025",
+    "credentialId": "2FA946AAC6D0",
+    "url": "https://www.hackerrank.com/certificates/2fa946aac6d0"
+  },
+  {
+    "title": "SQL (Advanced)",
+    "issuer": "HackerRank",
+    "issued": "Jan 2025",
+    "credentialId": "08260A1381FO",
+    "url": "https://www.hackerrank.com/certificates/08260a1381f0"
+  },
+  {
+    "title": "Python (Basic)",
+    "issuer": "HackerRank",
+    "issued": "Jan 2025",
+    "credentialId": "68AF3BB1BA1D",
+    "url": "https://www.hackerrank.com/certificates/68af3bb1ba1d"
+  },
+  {
+    "title": "SQL (Intermediate)",
+    "issuer": "HackerRank",
+    "issued": "Jan 2025",
+    "credentialId": "4251E5802BD8",
+    "url": "https://www.hackerrank.com/certificates/4251e5802bd8"
+  },
+  {
+    "title": "Node.js (Intermediate)",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "ED19E10B351A",
+    "url": "https://www.hackerrank.com/certificates/ed19e10b351a"
+  },
+  {
+    "title": "Problem Solving (Intermediate)",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "38CE4518B199",
+    "url": "https://www.hackerrank.com/certificates/38ce4518b199"
+  },
+  {
+    "title": "Software Engineer",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "3C3CDE4A3C72",
+    "url": "https://www.hackerrank.com/certificates/3c3cde4a3c72"
+  },
+  {
+    "title": "Angular",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "63CCB2BEE4C8",
+    "url": "https://www.hackerrank.com/certificates/63ccb2bee4c8"
+  },
+  {
+    "title": "REST API",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "B8B5F682DF8D",
+    "url": "https://www.hackerrank.com/certificates/b8b5f682df8d"
+  },
+  {
+    "title": "CSS",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "1FF6A7F94CDF",
+    "url": "https://www.hackerrank.com/certificates/1ff6a7f94cdf"
+  },
+  {
+    "title": "Javascript (Intermediate)",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "1E9D7786AB83",
+    "url": "https://www.hackerrank.com/certificates/1e9d7786ab83"
+  },
+  {
+    "title": "Javascript",
+    "issuer": "HackerRank",
+    "issued": "Aug 2024",
+    "credentialId": "B9AA9F71FCDB",
+    "url": "https://www.hackerrank.com/certificates/b9aa9f71fcdb"
+  },
+  {
+    "title": "HTML Essential Training",
+    "issuer": "LinkedIn",
+    "issued": "Jul 2021",
+    "url": "https://www.linkedin.com/learning/certificates/53327a8d8c330f5941e6d526441e49b8070e9d90b05bcc615e7e3ef2da121c0d/?trk=backfilled_certificate"
+  },
+  {
+    "title": "JavaScript Essential Training",
+    "issuer": "LinkedIn",
+    "issued": "Jul 2021",
+    "url": "https://www.linkedin.com/learning/certificates/f2a694471f920f6ad71e41ed0ff02906f09b6bba9d87ff80bc1381b85b094c10/?trk=backfilled_certificate"
+  },
+  {
+    "title": "Responsive Web Design",
+    "issuer": "freeCodeCamp",
+    "issued": "Apr 2021",
+    "url": "https://freecodecamp.org/certification/fcc64797c74-f4da-4c6d-8c55-2fcdb7449cbf/responsive-web-design"
+  },
+  {
+    "title": "Front End Libraries",
+    "issuer": "freeCodeCamp",
+    "issued": "Apr 2021",
+    "url": "https://freecodecamp.org/certification/fcc64797c74-f4da-4c6d-8c55-2fcdb7449cbf/front-end-libraries"
+  },
+  {
+    "title": "JavaScript Algorithms and Data Structures",
+    "issuer": "freeCodeCamp",
+    "issued": "Mar 2021",
+    "url": "https://freecodecamp.org/certification/fcc64797c74-f4da-4c6d-8c55-2fcdb7449cbf/javascript-algorithms-and-data-structures"
+  },
+  {
+    "title": "The Complete 2020 Web Development Bootcamp",
+    "issuer": "Udemy",
+    "issued": "Jul 2020",
+    "url": "https://www.udemy.com/certificate/UC-6597a787-249d-423a-a272-40a7ea6fd78d/"
+  },
+  {
+    "title": "Java, Sql, Web Technologies",
+    "issuer": "JSpiders - Training & Development Center",
+    "issued": "Jan 2017",
+    "credentialId": "RAJ-J-18/149",
+    "url": null
+  }
+]

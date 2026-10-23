@@ -1,0 +1,214 @@
+text Projects
+text Projects from connected apps sync automatically and can’t be edited on LinkedIn.
+link Edit project Nokia WFGR
+text Workflow Manager (WFMgr) is an enterprise workflow automation solution integrated into Nokia's Canopy platform, designed to streamline the creation, validation, approval, and execution of network Management of Procedures (MOPs). The platform enables automated workflow orchestration, execution tracking, status monitoring, and operational reporting, helping improve efficiency, consistency, and reliability across network operations.
+text
+text
+text As a Senior Software Engineer at Innominds working on Nokia projects, I contribute to full-stack application development, building interactive user interfaces, integrating REST APIs, implementing backend logic, and managing data interactions to support end-to-end workflow automation. My work focuses on developing reusable components, improving application performance, handling workflow execution statuses, and delivering scalable and maintainable enterprise solutions.
+text
+link Angular, PostgreSQL and +4 skills
+text Associated with Innominds
+link Edit project Nokia WFGR
+link Edit project Nokia MBSS
+text The Minimum Baseline Security Standard (MBSS) automation tool is designed to ensure the security of information systems and data by providing a set of guidelines and requirements for minimum security configurations. This centralized tool allows users to define and automate new security scans from scratch, performing automated scans periodically or on demand on target network elements, and collecting reports without manual intervention. MBSS includes an embedded Apache Superset instance within Canopy for data visualization, offering various dashboards to display categorized data outputs
+link Angular, JavaScript and +6 skills
+text Associated with Innominds
+link Edit project Nokia MBSS
+link Edit project Nokia Problem Management
+text Problem management is responsible for managing the lifecycle of all problems that could happen in an IT service which maximizes system availability, improves service levels, reduces risks, reduces costs, and improves business user convenience and satisfaction
+link Angular, HTML5 and +8 skills
+text Associated with Innominds
+link Edit project Nokia Problem Management
+link Edit project Uniphore Aumina
+text Project Description:
+text
+text This is a speech analytics system that provides the functionality for contact centers to successfully drive critical business goals by analyzing existing speech data to build statistically strong customer response function models and enrich it with ongoing data to predict outcomes and prescribe a likely successful customer engagement process.
+text
+text Responsibilities:
+text
+text • Developed responsive and dynamic user interfaces using Angular, HTML, CSS, and JavaScript, and jQuery.
+text
+text • Integrated front-end code with back-end systems using Restful APIs.
+text
+text • Implemented designs provided by UX/UI designers and ensured they meet web accessibility guidelines.
+text
+text • Upgraded the libraries to avoid vulnerability in the application.
+text
+text • Updated and improved existing applications to meet changing business needs.
+link JavaScript, Amazon Web Services (AWS) and +8 skills
+text Associated with Innominds
+link Edit project Uniphore Aumina
+link Edit project Unext LMS Portal
+text Project Description:
+text
+text This is a service provider application for most of the educational institutions across the Country. LMS is a web portal used for attempting Quizzes and assignments given by faculty to students. We can schedule the attempts for learners. We can track the scores and grades of learners after their attempts.
+text
+text Responsibilities:
+text
+text • Designed and developed complex single-page applications (SPAs) using Angular, TypeScript, HTML, and CSS.
+text
+text • Collaborated with backend developers to define RESTful APIs in Node JS and MongoDB as databases and integrated them into Angular components.
+text
+text • Utilized Agular’s modular architecture to create reusable components and services and maintained them over time.
+text
+text • Performed code reviews and adhere to established coding standards and processes.
+text
+text • Developed unit tests and end-to-end tests using frameworks like Jasmine and Karma to ensure the reliability and quality of the code.
+link JavaScript, Angular and +5 skills
+text Associated with Innominds
+link Edit project Unext LMS Portal
+link Edit project Dover VSG
+text Project Description:
+text
+text This is a B2B e-commerce application. It has all the vehicle’s spare parts. Users can buy the required parts as per their needs by visiting the site.
+text
+text Responsibilities:
+text
+text • Created dynamic and responsive web pages using ISML, HTML, CSS, jQuery SCSS, and JavaScript.
+text
+text • Implemented Intershop's front-end features, such as product search, navigation, and recommendations.
+text
+text • Built reusable components and modules using ISML and managed their integration into the overall site architecture.
+text
+text • Utilized Intershop's responsive design features to create optimized layouts for mobile devices and other small screens.
+link JavaScript, Angular and +8 skills
+text Associated with Innominds
+link Edit project Dover VSG
+link Edit project Bemiraki Portal
+text Responsibilities:
+text
+text ➡ Developing application for internal purpose to track delivery and sales.
+text
+text ➡ Creating Modules and reusable components in angular.
+text
+text ➡ Application design and implementation.
+text
+text ➡ Creating modular, responsive templates using Angular, modern CSS techniques and JavaScript libraries.
+text
+text Technology used: Angular, JavaScript, HTML, CSS, Bootstrap
+text
+text Role: UI Developer
+text
+text
+text
+link JavaScript, Angular and +2 skills
+text Associated with BeMiraki
+link Edit project Bemiraki Portal
+link Edit project Timberwala
+text Responsibilities:
+text
+text ➡ Adding reCAPTCHA and applied jQuery core library functions for the logical implementation of the applications at the client side.
+text
+text ➡ Worked on Modal popup
+link JavaScript and Front-end Development
+text Associated with BeMiraki
+link Edit project Timberwala
+link Edit project Wikipedia Search App Using Angular
+text A simple Wikipedia search app build using angular 9
+text
+link JavaScript, Angular and +1 skill
+link Edit project Wikipedia Search App Using Angular
+link Edit project Moodubelle league
+text Description: Moodubelle league is an application which provides players to register there form to participate in the league.
+text
+text
+text Responsibilities:
+text
+text ➡ Creating a registration form for players using EJS template Engine
+text
+text ➡ Creating Schema for various fields for form.
+text
+text ➡ Creating an admin portal to view a list of players who applied for registrations and allowing admin to select from the list and make the registration form disabled once the selection is done and displaying only selected players.
+text
+text
+text Technology used: Expressjs, EJS, Nodejs, mongoDB, mongoAtlas.
+text
+text Role: Full Stack Software Developer
+text
+link JavaScript and TypeScript
+text Associated with BeMiraki
+link Edit project Moodubelle league
+link Edit project Typing Challenge
+text A simple Typing Challenge game build using angular 9
+link TypeScript
+link Edit project Typing Challenge
+link Edit project Random Password Generator
+text A simple Random password generator build using angular 9
+link TypeScript
+link Edit project Random Password Generator
+link Edit project Conversion app Using Angular
+text Converting➡ Miles to Kilo Meters
+text
+text ➡USD to INR
+text
+text ➡Celsius to Fahrenheit
+text
+text Using angular 9
+text
+link TypeScript
+link Edit project Conversion app Using Angular
+link Edit project T-SWAGG India
+text Description: T-SWAGG India is a clothing startup.
+text
+text Responsibilities:
+text
+text ➡ Designed and Managed website with the front-end standards document and oversaw production of JavaScript, HTML, and CSS.
+text
+text ➡ Created highly effective marketing, product presentations, and trade show materials and Created interface designs for integration into web applications.
+text
+text ➡ Fixed front end bugs (HTML, CSS, JavaScript errors (JQUERY).
+text
+text ➡ Did on site SEO implementations to increase traffic to client websites
+text
+link JavaScript
+text Associated with BeMiraki
+link Edit project T-SWAGG India
+link Edit project NDRF
+text Description: NDRF acts as a National platform for Engineers, Scientists and Technologists engaged in R and D for building a strong R & D Engineering base in the country.
+text
+text
+text Responsibilities:
+text
+text ➡ Executed and contributed to a full-stack web development project, with an emphasis on front end features, browser manipulation, and cross-browser compatibility.
+text
+text ➡ Maintained active conversation with the client to ensure the site met his needs and researched industry trends and websites to provide top quality design.
+text
+text ➡ Communicated directly with clients to establish project parameters, wrote proposals for design work, analyzed competitor websites, determined web site content, produced site maps for client approval, and communicated progress with clients throughout the length of project.
+text
+text ➡ Optimized pages for page speed using Google Page Speed (API) for Apache to obtain higher rankings on Search Engines (SEM).
+text
+text ➡ Provided internet related services including web hosting, search engine optimization / submission.
+text
+text ➡ Acknowledged with appreciation Letter from Client.
+text
+text
+text Technology used: HTML5, CSS3, JavaScript, BOOTSTRAP.
+text
+text Role: Front-End Developer
+text
+link JavaScript, Angular and +2 skills
+text Associated with BeMiraki
+link Edit project NDRF
+link Edit project SWAN EDULABS
+text Description: SWAN EDULABS is a K-12 Educational Service Provider incorporated in the year 2016 in Hyderabad, India. The company is engaged into Research & Development in Education, Media and Animation sectors to create fun-oriented learning products and solutions for children’s global market.
+text
+text
+text Responsibilities:
+text
+text ➡ Leading the front-end development on completely new design and implementation of the Webapp.
+text
+text ➡ Responsive web development supporting all devices from mobile-Tablet-Desktop.
+text
+text ➡ Adding reCAPTCHA and applied jQuery core library functions for the logical implementation of the applications at the client side.
+text
+text ➡ Used Ajax, JSON to send the request to the server in the form page. Integrating Chatbot to conduct an autoBot Conversation.
+text
+text
+text Technology used: HTML5, CSS3, JavaScript, BOOTSTRAP, JQUERY, php, ChatBot.
+text
+text Role: Front-End Developer.
+text
+text
+link JavaScript, Front-end Development and +1 skill
+text Associated with BeMiraki
+link Edit project SWAN EDULABS

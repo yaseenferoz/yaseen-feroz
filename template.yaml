@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Yaseen Feroz portfolio assistant backed by Amazon Bedrock
+
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Description: Exact HTTPS origin of the deployed portfolio, with no path or trailing slash
+    AllowedPattern: '^https://[^/]+$'
+  BedrockModelId:
+    Type: String
+    Default: amazon.nova-micro-v1:0
+    Description: Bedrock model ID enabled for this AWS account and region
+
+Resources:
+  PortfolioChatApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        AllowMethods:
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+        MaxAge: 600
+
+  PortfolioChatFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./api
+      Handler: chat.handler
+      Runtime: nodejs20.x
+      Architectures:
+        - arm64
+      MemorySize: 256
+      Timeout: 25
+      Environment:
+        Variables:
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+          AWS_REGION: !Ref AWS::Region
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource:
+                - !Sub 'arn:${AWS::Partition}:bedrock:${AWS::Region}::foundation-model/${BedrockModelId}'
+                - !Sub 'arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${BedrockModelId}'
+                - !Sub 'arn:${AWS::Partition}:bedrock:*::foundation-model/amazon.nova-2-lite-v1:0'
+      Events:
+        Chat:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PortfolioChatApi
+            Path: /api/chat
+            Method: POST
+
+Outputs:
+  ChatApiUrl:
+    Description: HTTPS chat API URL; set this in index.html's chat-api-url meta element
+    Value: !Sub 'https://${PortfolioChatApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/api/chat'

@@ -12,8 +12,6 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -22,15 +20,97 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  deploy-backend:
+    if: ${{ vars.AWS_ROLE_ARN != '' && vars.AWS_SAM_BUCKET != '' && vars.AWS_CLOUDFORMATION_ROLE_ARN != '' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      chat_api_url: ${{ steps.api-url.outputs.chat_api_url }}
+    env:
+      AWS_DEFAULT_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+      BEDROCK_MODEL_ID: ${{ vars.BEDROCK_MODEL_ID || 'amazon.nova-micro-v1:0' }}
+      AWS_SAM_BUCKET: ${{ vars.AWS_SAM_BUCKET }}
+      AWS_CLOUDFORMATION_ROLE_ARN: ${{ vars.AWS_CLOUDFORMATION_ROLE_ARN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials with GitHub OIDC
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+      - name: Set up AWS SAM CLI
+        uses: aws-actions/setup-sam@v3
+        with:
+          use-installer: true
+      - name: Build and deploy the Bedrock API
+        run: |
+          sam build --template-file template.yaml
+          sam deploy \
+            --template-file .aws-sam/build/template.yaml \
+            --stack-name yaseen-feroz-portfolio \
+            --s3-bucket "$AWS_SAM_BUCKET" \
+            --role-arn "$AWS_CLOUDFORMATION_ROLE_ARN" \
+            --capabilities CAPABILITY_IAM \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset \
+            --region "$AWS_DEFAULT_REGION" \
+            --parameter-overrides \
+              "AllowedOrigin=https://yaseenferoz.github.io" \
+              "BedrockModelId=$BEDROCK_MODEL_ID"
+      - name: Read the chat API URL
+        id: api-url
+        run: |
+          url="$(aws cloudformation describe-stacks \
+            --stack-name yaseen-feroz-portfolio \
+            --region "$AWS_DEFAULT_REGION" \
+            --query "Stacks[0].Outputs[?OutputKey=='ChatApiUrl'].OutputValue | [0]" \
+            --output text)"
+          test -n "$url"
+          test "$url" != "None"
+          echo "chat_api_url=$url" >> "$GITHUB_OUTPUT"
+
+  # If the AWS pipeline variables are configured, deploy the backend before publishing the page.
   deploy:
+    needs: deploy-backend
+    if: ${{ always() && (needs.deploy-backend.result == 'success' || needs.deploy-backend.result == 'skipped') }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set the deployed chat endpoint
+        if: ${{ needs.deploy-backend.result == 'success' }}
+        env:
+          CHAT_API_URL: ${{ needs.deploy-backend.outputs.chat_api_url }}
+        run: |
+          python - <<'PY'
+          import html
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path('index.html')
+          source = path.read_text(encoding='utf-8')
+          endpoint = html.escape(os.environ['CHAT_API_URL'], quote=True)
+          updated, count = re.subn(
+              r'<meta name="chat-api-url" content="[^"]*">',
+              f'<meta name="chat-api-url" content="{endpoint}">',
+              source,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit('Could not locate the chat-api-url meta tag in index.html')
+          path.write_text(updated, encoding='utf-8')
+          PY
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

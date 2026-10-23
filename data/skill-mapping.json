@@ -1,0 +1,645 @@
+{
+  "source": "LinkedIn profile skills and existing resume-sourced website skills",
+  "linkedinEntryCount": 69,
+  "normalizedLinkedInLabelCount": 59,
+  "displayedLabelCount": 80,
+  "categoryCount": 8,
+  "linkedin": [
+    {
+      "source": "JavaScript",
+      "label": "JavaScript / ES6 (ECMAScript)",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "ECMAScript",
+      "label": "JavaScript / ES6 (ECMAScript)",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "Es6",
+      "label": "JavaScript / ES6 (ECMAScript)",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "TypeScript",
+      "label": "TypeScript",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "HTML",
+      "label": "HTML / HTML5",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "HTML5",
+      "label": "HTML / HTML5",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "Cascading Style Sheets (CSS)",
+      "label": "CSS / CSS3",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "Less",
+      "label": "Sass / Less",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "jQuery",
+      "label": "jQuery",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "AJAX",
+      "label": "AJAX",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "Web Design",
+      "label": "Web design",
+      "category": "Languages & web interfaces"
+    },
+    {
+      "source": "Angular",
+      "label": "Angular",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "AngularJS",
+      "label": "AngularJS",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "React.js",
+      "label": "React.js",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "RxJS",
+      "label": "RxJS",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "NgRx",
+      "label": "NgRx",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "ngx",
+      "label": "ngx libraries",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "Reactive Programming",
+      "label": "Reactive programming",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "Bootstrap",
+      "label": "Bootstrap",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "Material-UI",
+      "label": "Material-UI",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "Semantic UI",
+      "label": "Semantic UI",
+      "category": "Frameworks & reactive UI"
+    },
+    {
+      "source": "Node.js",
+      "label": "Node.js",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "nodej",
+      "label": "Node.js",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "Express.js",
+      "label": "Express.js",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "REST APIs",
+      "label": "REST APIs",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "Web Services API",
+      "label": "Web service APIs",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "Python (Programming Language)",
+      "label": "Python",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "python",
+      "label": "Python",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "JSON",
+      "label": "JSON",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "Embedded JavaScript (EJS)",
+      "label": "Embedded JavaScript (EJS)",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "JavaServer Pages (JSP)",
+      "label": "JavaServer Pages (JSP)",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "JSON Web Token (JWT)",
+      "label": "JWT",
+      "category": "Backend & API development"
+    },
+    {
+      "source": "PostgreSQL",
+      "label": "PostgreSQL",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "MongoDB",
+      "label": "MongoDB",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "NoSQL",
+      "label": "NoSQL",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "SQL",
+      "label": "SQL",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "MySQL",
+      "label": "MySQL",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "Microsoft SQL Server",
+      "label": "SQL Server",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "Crystal Reports",
+      "label": "Crystal Reports",
+      "category": "Databases & reporting"
+    },
+    {
+      "source": "Amazon Web Services (AWS)",
+      "label": "AWS / EC2 / S3",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Amazon EC2",
+      "label": "AWS / EC2 / S3",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Kubernetes",
+      "label": "Kubernetes",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Docker",
+      "label": "Docker",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "HAProxy",
+      "label": "HAProxy",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Jenkins",
+      "label": "Jenkins",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Continuous Integration and Continuous Delivery (CI/CD)",
+      "label": "CI/CD",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Linux",
+      "label": "Linux",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Shell Scripting",
+      "label": "Shell scripting",
+      "category": "Cloud, infrastructure & delivery"
+    },
+    {
+      "source": "Jasmine Framework",
+      "label": "Jasmine",
+      "category": "Testing & developer workflow"
+    },
+    {
+      "source": "Git",
+      "label": "Git / GitHub",
+      "category": "Testing & developer workflow"
+    },
+    {
+      "source": "GitHub",
+      "label": "Git / GitHub",
+      "category": "Testing & developer workflow"
+    },
+    {
+      "source": "Postman API",
+      "label": "Postman",
+      "category": "Testing & developer workflow"
+    },
+    {
+      "source": "npm",
+      "label": "npm",
+      "category": "Testing & developer workflow"
+    },
+    {
+      "source": "Microsoft Visual Studio Code",
+      "label": "Visual Studio Code",
+      "category": "Testing & developer workflow"
+    },
+    {
+      "source": "Intershop",
+      "label": "Intershop / ISML",
+      "category": "Platforms, mobile & design tools"
+    },
+    {
+      "source": "ISML",
+      "label": "Intershop / ISML",
+      "category": "Platforms, mobile & design tools"
+    },
+    {
+      "source": "Flutter",
+      "label": "Flutter / Dart",
+      "category": "Platforms, mobile & design tools"
+    },
+    {
+      "source": "Full-Stack Development",
+      "label": "Full-stack development",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Front-end Development",
+      "label": "Frontend development",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Web Engineering",
+      "label": "Web engineering / development",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Web Development",
+      "label": "Web engineering / development",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Mean Stack",
+      "label": "MEAN stack",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Software Design",
+      "label": "Software design",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Software Infrastructure",
+      "label": "Software infrastructure",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Engineering",
+      "label": "Software engineering",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Software Industry",
+      "label": "Software engineering",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Object-Oriented Programming (OOP)",
+      "label": "Object-oriented programming",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Data Structures",
+      "label": "Data structures",
+      "category": "Engineering foundations"
+    },
+    {
+      "source": "Problem Solving",
+      "label": "Problem solving",
+      "category": "Engineering foundations"
+    }
+  ],
+  "existingResume": [
+    {
+      "source": "Angular",
+      "labels": [
+        "Angular"
+      ]
+    },
+    {
+      "source": "TypeScript",
+      "labels": [
+        "TypeScript"
+      ]
+    },
+    {
+      "source": "JavaScript / ES6",
+      "labels": [
+        "JavaScript / ES6 (ECMAScript)"
+      ]
+    },
+    {
+      "source": "HTML5",
+      "labels": [
+        "HTML / HTML5"
+      ]
+    },
+    {
+      "source": "CSS3",
+      "labels": [
+        "CSS / CSS3"
+      ]
+    },
+    {
+      "source": "Sass / Less",
+      "labels": [
+        "Sass / Less"
+      ]
+    },
+    {
+      "source": "Bootstrap",
+      "labels": [
+        "Bootstrap"
+      ]
+    },
+    {
+      "source": "Bulma",
+      "labels": [
+        "Bulma"
+      ]
+    },
+    {
+      "source": "Material Design",
+      "labels": [
+        "Angular Material / Material Design"
+      ]
+    },
+    {
+      "source": "Vue",
+      "labels": [
+        "Vue.js"
+      ]
+    },
+    {
+      "source": "jQuery",
+      "labels": [
+        "jQuery"
+      ]
+    },
+    {
+      "source": "Node.js",
+      "labels": [
+        "Node.js"
+      ]
+    },
+    {
+      "source": "Express.js",
+      "labels": [
+        "Express.js"
+      ]
+    },
+    {
+      "source": "REST APIs",
+      "labels": [
+        "REST APIs"
+      ]
+    },
+    {
+      "source": "Embedded JS",
+      "labels": [
+        "Embedded JavaScript (EJS)"
+      ]
+    },
+    {
+      "source": "JSON",
+      "labels": [
+        "JSON"
+      ]
+    },
+    {
+      "source": "Java",
+      "labels": [
+        "Java"
+      ]
+    },
+    {
+      "source": "MongoDB",
+      "labels": [
+        "MongoDB"
+      ]
+    },
+    {
+      "source": "Mongoose",
+      "labels": [
+        "Mongoose"
+      ]
+    },
+    {
+      "source": "MongoDB Atlas",
+      "labels": [
+        "MongoDB Atlas"
+      ]
+    },
+    {
+      "source": "SQL",
+      "labels": [
+        "SQL"
+      ]
+    },
+    {
+      "source": "MySQL",
+      "labels": [
+        "MySQL"
+      ]
+    },
+    {
+      "source": "SQL Server",
+      "labels": [
+        "SQL Server"
+      ]
+    },
+    {
+      "source": "Crystal Reports",
+      "labels": [
+        "Crystal Reports"
+      ]
+    },
+    {
+      "source": "RxJS",
+      "labels": [
+        "RxJS"
+      ]
+    },
+    {
+      "source": "NgRx",
+      "labels": [
+        "NgRx"
+      ]
+    },
+    {
+      "source": "Angular Universal",
+      "labels": [
+        "Angular Universal"
+      ]
+    },
+    {
+      "source": "Jasmine",
+      "labels": [
+        "Jasmine"
+      ]
+    },
+    {
+      "source": "Karma",
+      "labels": [
+        "Karma"
+      ]
+    },
+    {
+      "source": "Protractor",
+      "labels": [
+        "Protractor"
+      ]
+    },
+    {
+      "source": "Code reviews",
+      "labels": [
+        "Code reviews"
+      ]
+    },
+    {
+      "source": "CI/CD",
+      "labels": [
+        "CI/CD"
+      ]
+    },
+    {
+      "source": "AWS / S3 / EC2",
+      "labels": [
+        "AWS / EC2 / S3"
+      ]
+    },
+    {
+      "source": "GCP",
+      "labels": [
+        "GCP"
+      ]
+    },
+    {
+      "source": "Cloudflare",
+      "labels": [
+        "Cloudflare"
+      ]
+    },
+    {
+      "source": "Git / GitHub",
+      "labels": [
+        "Git / GitHub"
+      ]
+    },
+    {
+      "source": "Bitbucket",
+      "labels": [
+        "Bitbucket"
+      ]
+    },
+    {
+      "source": "Linux / Shell",
+      "labels": [
+        "Linux",
+        "Shell scripting"
+      ]
+    },
+    {
+      "source": "Visual Studio",
+      "labels": [
+        "Visual Studio"
+      ]
+    },
+    {
+      "source": "Heroku",
+      "labels": [
+        "Heroku"
+      ]
+    },
+    {
+      "source": "Flutter / Dart",
+      "labels": [
+        "Flutter / Dart"
+      ]
+    },
+    {
+      "source": "Android Studio",
+      "labels": [
+        "Android Studio"
+      ]
+    },
+    {
+      "source": "Intershop / ISML",
+      "labels": [
+        "Intershop / ISML"
+      ]
+    },
+    {
+      "source": "WordPress",
+      "labels": [
+        "WordPress"
+      ]
+    },
+    {
+      "source": "Shopify",
+      "labels": [
+        "Shopify"
+      ]
+    },
+    {
+      "source": "Adobe XD",
+      "labels": [
+        "Adobe XD"
+      ]
+    },
+    {
+      "source": "InVision",
+      "labels": [
+        "InVision"
+      ]
+    },
+    {
+      "source": "Adobe Illustrator",
+      "labels": [
+        "Adobe Illustrator"
+      ]
+    }
+  ]
+}
