@@ -126,6 +126,7 @@
   const assistantForm = document.getElementById('assistant-form');
   const assistantInput = document.getElementById('assistant-question');
   const assistantReplies = document.getElementById('assistant-replies');
+  const assistantNote = document.querySelector('.assistant-note');
   if (assistantForm && assistantInput && assistantReplies) {
     const history = [];
     const endpoint = apiEndpoint('/api/chat');
@@ -138,6 +139,20 @@
       message.scrollIntoView({ block: 'nearest', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
       return message;
     };
+    const cleanAssistantReply = text => text
+      .replace(/\r\n?/g, '\n')
+      .replace(/```[\w-]*|```/g, '')
+      .replace(/^\s{0,3}#{1,6}\s*/gm, '')
+      .replace(/\*\*(.*?)\*\*/gs, '$1')
+      .replace(/__(.*?)__/gs, '$1')
+      .replace(/(^|\s)\*([^*\n]+)\*(?=\s|$)/g, '$1$2')
+      .replace(/^\s*[-*+]\s+/gm, '• ')
+      .replace(/^>\s?/gm, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/\[([^\]]+)\]\((?:https?:\/\/|mailto:)[^)]+\)/gi, '$1')
+      .replace(/[ \t]+\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
     assistantForm.addEventListener('submit', event => {
       event.preventDefault();
       const question = assistantInput.value.trim();
@@ -158,21 +173,39 @@
         signal: controller.signal
       }).then(async response => {
         const body = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(body.error || 'The assistant is temporarily unavailable.');
+        if (!response.ok) {
+          const error = new Error(body.error || 'The assistant is temporarily unavailable.');
+          error.status = response.status;
+          throw error;
+        }
         if (typeof body.reply !== 'string' || !body.reply.trim()) throw new Error('The assistant returned an empty answer.');
-        const reply = body.reply.trim().slice(0, 5000);
+        const reply = cleanAssistantReply(body.reply).slice(0, 3000);
         history.push({ role: 'user', content: question }, { role: 'assistant', content: reply });
         pending.textContent = reply;
+        if (Number.isInteger(body.remaining) && assistantNote) {
+          assistantNote.textContent = body.remaining === 0
+            ? 'Portfolio only · daily limit reached; try again tomorrow.'
+            : `Portfolio only · ${body.remaining} questions left today on this connection.`;
+        }
+        if (body.remaining === 0) {
+          assistantInput.disabled = true;
+          sendButton.disabled = true;
+        }
         assistantReplies.scrollTop = assistantReplies.scrollHeight;
       }).catch(error => {
         pending.textContent = error.name === 'AbortError'
           ? 'That took too long. Please try again.'
           : (error.message === 'Failed to fetch' ? 'Could not reach the AI service. Check the backend setup and try again.' : error.message);
+        if (error.status === 429) {
+          assistantInput.disabled = true;
+          sendButton.disabled = true;
+          if (assistantNote) assistantNote.textContent = 'Portfolio only · daily limit reached; try again tomorrow.';
+        }
         assistantReplies.scrollTop = assistantReplies.scrollHeight;
       }).finally(() => {
         clearTimeout(timeout);
         assistantForm.dataset.busy = 'false';
-        sendButton.disabled = false;
+        sendButton.disabled = assistantInput.disabled;
         sendButton.textContent = '↗';
         assistantInput.focus();
       });

@@ -1,12 +1,44 @@
 import { BedrockRuntimeClient, ConverseCommand } from '@aws-sdk/client-bedrock-runtime';
+import { DynamoDBClient, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import { createHash } from 'node:crypto';
 
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 500;
 const MAX_TOTAL_LENGTH = 3000;
 const MODEL_ID = process.env.BEDROCK_MODEL_ID || 'amazon.nova-micro-v1:0';
 const REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'us-east-1';
+const USAGE_TABLE = process.env.USAGE_TABLE || '';
+const DAILY_QUESTION_LIMIT = Number.parseInt(process.env.DAILY_QUESTION_LIMIT || '12', 10);
 const client = new BedrockRuntimeClient({ region: REGION });
-const systemPrompt = `You are the portfolio assistant for Yaseen Feroz. Answer questions using only this portfolio context. Be concise, helpful, and honest; do not invent experience, results, project features, or personal information. If information is not included here, say so and offer the contact email mdyaseenferoz@gmail.com.\n\nYaseen is a Senior Software Engineer at Innominds. His experience includes enterprise workflow and security software for Nokia, speech analytics, learning platforms, e-commerce, and web applications. Skills include Angular, TypeScript, JavaScript, Vue.js, React, Node.js, REST APIs, PostgreSQL, MongoDB, AWS, and software testing. Portfolio projects include Codekraft MA QA Quality and Campuskraft; their public descriptions are brief, so do not make up details. Contact: mdyaseenferoz@gmail.com.`;
+const usageClient = USAGE_TABLE ? new DynamoDBClient({ region: REGION }) : null;
+const systemPrompt = `You are Yaseen Feroz's portfolio assistant. Answer only questions about Yaseen, his portfolio, career, skills, projects, and how to contact him. If someone asks about another topic or asks you to act as a general AI, briefly say you can help with Yaseen's portfolio and invite a relevant question. Use only the facts below. Do not invent project details, responsibilities, results, or personal information. If the portfolio does not say, say that briefly and offer mdyaseenferoz@gmail.com when useful.\n\nKeep each answer direct and short: usually 1 to 3 sentences, under 70 words. Write clean plain text that fits a compact chat bubble. Do not use Markdown, headings, # characters, asterisks, or decorative formatting. Avoid repeating the question or adding an unnecessary introduction.\n\nYaseen is a Senior Software Engineer at Innominds. His experience includes enterprise workflow and security software for Nokia, speech analytics, learning platforms, e-commerce, and web applications. His skills include Angular, TypeScript, JavaScript, Vue.js, React, Node.js, REST APIs, PostgreSQL, MongoDB, AWS, and software testing. Portfolio projects include Codekraft MA QA Quality and Campuskraft. Contact: mdyaseenferoz@gmail.com.`;
+
+async function reserveDailyQuestion(sourceIp) {
+  if (!usageClient || !USAGE_TABLE) return { remaining: null };
+  if (!sourceIp) throw new Error('The request did not include a client IP address.');
+
+  const day = new Date().toISOString().slice(0, 10);
+  const ipHash = createHash('sha256').update(`${day}:${sourceIp}`).digest('hex');
+  const expiresAt = Math.floor(Date.parse(`${day}T00:00:00.000Z`) / 1000) + 86400;
+
+  const result = await usageClient.send(new UpdateItemCommand({
+    TableName: USAGE_TABLE,
+    Key: { usageKey: { S: `${day}#${ipHash}` } },
+    UpdateExpression: 'SET #requestCount = if_not_exists(#requestCount, :zero) + :one, #expiresAt = if_not_exists(#expiresAt, :expiresAt)',
+    ConditionExpression: 'attribute_not_exists(#requestCount) OR #requestCount < :limit',
+    ExpressionAttributeNames: { '#requestCount': 'requestCount', '#expiresAt': 'expiresAt' },
+    ExpressionAttributeValues: {
+      ':zero': { N: '0' },
+      ':one': { N: '1' },
+      ':limit': { N: String(DAILY_QUESTION_LIMIT) },
+      ':expiresAt': { N: String(expiresAt) }
+    },
+    ReturnValues: 'UPDATED_NEW'
+  }));
+
+  const used = Number(result.Attributes?.requestCount?.N || DAILY_QUESTION_LIMIT);
+  return { remaining: Math.max(0, DAILY_QUESTION_LIMIT - used) };
+}
 
 function response(statusCode, payload, origin, allowedOrigin) {
   const headers = {
@@ -62,11 +94,22 @@ export const handler = async event => {
     return response(400, { error: 'Conversation is too long. Please start a new chat.' }, origin, allowedOrigin);
   }
 
+  let usage;
+  try {
+    usage = await reserveDailyQuestion(event.requestContext?.http?.sourceIp || '');
+  } catch (error) {
+    if (error.name === 'ConditionalCheckFailedException') {
+      return response(429, { error: "This connection has reached today's assistant limit. Please try again tomorrow." }, origin, allowedOrigin);
+    }
+    console.error('Chat usage limit check failed:', error.name || 'Error');
+    return response(503, { error: 'The assistant is temporarily unavailable. Please try again later.' }, origin, allowedOrigin);
+  }
+
   try {
     const request = {
       system: [{ text: systemPrompt }],
       messages: normalized,
-      inferenceConfig: { maxTokens: 500, temperature: 0.4, topP: 0.9 }
+      inferenceConfig: { maxTokens: 220, temperature: 0.3, topP: 0.8 }
     };
     let output;
     if (process.env.AWS_BEARER_TOKEN_BEDROCK) {
@@ -94,7 +137,7 @@ export const handler = async event => {
     }
     const reply = (output?.message?.content || []).map(block => block.text || '').join('').trim();
     if (!reply) throw new Error('Bedrock returned an empty response.');
-    return response(200, { reply }, origin, allowedOrigin);
+    return response(200, { reply, remaining: usage.remaining }, origin, allowedOrigin);
   } catch (error) {
     console.error('Bedrock chat request failed:', error.name || 'Error');
     return response(502, { error: 'The AI assistant is temporarily unavailable. Please try again shortly.' }, origin, allowedOrigin);

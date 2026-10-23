@@ -13,6 +13,20 @@ Parameters:
     Description: Bedrock model ID enabled for this AWS account and region
 
 Resources:
+  PortfolioChatUsageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: usageKey
+          AttributeType: S
+      KeySchema:
+        - AttributeName: usageKey
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+
   PortfolioChatApi:
     Type: AWS::Serverless::HttpApi
     Properties:
@@ -25,6 +39,9 @@ Resources:
         AllowHeaders:
           - Content-Type
         MaxAge: 600
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 3
+        ThrottlingRateLimit: 0.5
 
   PortfolioChatFunction:
     Type: AWS::Serverless::Function
@@ -40,6 +57,8 @@ Resources:
         Variables:
           ALLOWED_ORIGIN: !Ref AllowedOrigin
           BEDROCK_MODEL_ID: !Ref BedrockModelId
+          USAGE_TABLE: !Ref PortfolioChatUsageTable
+          DAILY_QUESTION_LIMIT: '12'
       Policies:
         - Statement:
             - Effect: Allow
@@ -49,6 +68,10 @@ Resources:
                 - !Sub 'arn:${AWS::Partition}:bedrock:${AWS::Region}::foundation-model/${BedrockModelId}'
                 - !Sub 'arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${BedrockModelId}'
                 - !Sub 'arn:${AWS::Partition}:bedrock:*::foundation-model/amazon.nova-2-lite-v1:0'
+            - Effect: Allow
+              Action:
+                - dynamodb:UpdateItem
+              Resource: !GetAtt PortfolioChatUsageTable.Arn
       Events:
         Chat:
           Type: HttpApi
