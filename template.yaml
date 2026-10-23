@@ -40,7 +40,6 @@ Resources:
         Variables:
           ALLOWED_ORIGIN: !Ref AllowedOrigin
           BEDROCK_MODEL_ID: !Ref BedrockModelId
-          AWS_REGION: !Ref AWS::Region
       Policies:
         - Statement:
             - Effect: Allow
