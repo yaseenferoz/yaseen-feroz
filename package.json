@@ -6,7 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "chat:local": "node --env-file=.env api/local-server.mjs"
+    "chat:local": "node scripts/build-chat-context.mjs && node --env-file=.env api/local-server.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "^3.900.0"

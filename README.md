@@ -39,7 +39,7 @@ Content, navigation, and native project/certificate disclosures work without Jav
 
 The contact form sends submissions through FormSubmit to `mdyaseenferoz@gmail.com`; no custom domain or mail API key is needed.
 
-A portfolio chat widget sends questions to `api/chat.mjs`, a Node.js AWS Lambda handler that calls Amazon Bedrock using the Converse API. The browser contains only the endpoint path; AWS credentials and access remain server-side. The widget scrolls its message history independently and scrolls each new reply into view.
+A portfolio chat widget sends questions to `api/chat.mjs`, a Node.js AWS Lambda handler that calls Amazon Bedrock using the Converse API. Before deployment, `scripts/build-chat-context.mjs` extracts the full page content from `index.html`, including project contributions and expandable archive details, and packages it with the Lambda. The local chat command rebuilds this context automatically. This keeps answers grounded in the current website instead of a short, separately maintained summary. The browser contains only the endpoint path; AWS credentials and access remain server-side. The widget scrolls its message history independently and scrolls each new reply into view.
 
 ### Configure Amazon Bedrock chat
 

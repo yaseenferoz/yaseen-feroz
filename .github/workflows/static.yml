@@ -45,6 +45,8 @@ jobs:
         uses: aws-actions/setup-sam@v3
         with:
           use-installer: true
+      - name: Extract portfolio content for the chat assistant
+        run: node scripts/build-chat-context.mjs
       - name: Build and deploy the Bedrock API
         run: |
           sam build --template-file template.yaml
