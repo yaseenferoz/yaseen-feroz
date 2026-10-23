@@ -5,7 +5,8 @@ const PORT = Number(process.env.PORT || 8787);
 const ORIGIN = process.env.ALLOWED_ORIGIN || `http://localhost:${PORT}`;
 process.env.ALLOWED_ORIGIN = ORIGIN;
 const handlers = {
-  '/api/chat': (await import('./chat.mjs')).handler
+  '/api/chat': (await import('./chat.mjs')).handler,
+  '/api/contact': (await import('./chat.mjs')).handler
 };
 
 createServer(async (request, response) => {
@@ -18,9 +19,10 @@ createServer(async (request, response) => {
   for await (const chunk of request) chunks.push(chunk);
   const event = {
     httpMethod: request.method,
+    rawPath: request.url,
     headers: request.headers,
     body: Buffer.concat(chunks).toString('utf8'),
-    requestContext: { http: { method: request.method } }
+    requestContext: { http: { method: request.method, path: request.url, sourceIp: request.socket.remoteAddress } }
   };
   const result = await handler(event);
   response.writeHead(result.statusCode, result.headers).end(result.body);

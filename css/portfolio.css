@@ -113,3 +113,24 @@
   .project-archive-count { display: block; margin-left: 0; margin-top: 6px; }
   .academic-project summary span { display: block; margin: 12px 0 0; line-height: 1.6; }
 }
+
+.icon-arrow { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; vertical-align: -0.15em; overflow: visible; }
+.button .icon-arrow { width: 16px; height: 16px; }
+.card-symbol .icon-arrow { width: 32px; height: 32px; }
+.contact-arrow .icon-arrow { width: 42px; height: 42px; }
+.assistant-panel > summary .icon-arrow { width: 16px; height: 16px; }
+.assistant-form button .icon-arrow { width: 18px; height: 18px; }
+.credential-action .icon-arrow { width: 13px; height: 13px; }
+.credential-row-arrow .icon-arrow { width: 18px; height: 18px; }
+.assistant-form[hidden], .assistant-lead-form[hidden] { display: none !important; }
+.assistant-lead-form { flex: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; max-height: 42vh; overflow-y: auto; padding-top: 10px; border-top: 1px solid var(--line); }
+.assistant-lead-intro, .assistant-lead-email, .assistant-consent, .assistant-lead-form button, #assistant-lead-status { grid-column: 1 / -1; }
+.assistant-lead-intro { margin: 0; color: var(--ink); font-size: 11px; line-height: 1.45; }
+.assistant-lead-form label:not(.assistant-consent) { min-width: 0; color: var(--muted); font-size: 9px; letter-spacing: .6px; }
+.assistant-lead-form label:not(.assistant-consent) input { width: 100%; margin-top: 3px; border: 1px solid var(--line); border-radius: 4px; background: #111310; color: var(--ink); padding: 8px; font-size: 11px; letter-spacing: normal; }
+.assistant-lead-form .assistant-consent { display: flex; align-items: flex-start; gap: 8px; color: var(--muted); font-size: 9px; line-height: 1.4; letter-spacing: normal; }
+.assistant-consent input { flex: 0 0 auto; width: 14px; height: 14px; margin: 0; accent-color: var(--lime); }
+.assistant-lead-form button { display: flex; justify-content: center; align-items: center; gap: 8px; border: 0; border-radius: 4px; background: var(--lime); color: #111310; padding: 10px; font-size: 11px; font-weight: 600; }
+.assistant-lead-form button:disabled { opacity: .6; cursor: wait; }
+.assistant-lead-form button .icon-arrow { width: 14px; height: 14px; }
+#assistant-lead-status { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.4; }

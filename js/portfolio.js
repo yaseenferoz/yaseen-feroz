@@ -2,6 +2,7 @@
   'use strict';
   const root = document.documentElement;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const arrowIconMarkup = '<svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M5 4h7v7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   root.classList.add('js');
   // The introduction is decorative; it never blocks access to the page.
   const intro = document.querySelector('.intro');
@@ -120,13 +121,15 @@
     } finally {
       clearTimeout(timeout);
       button.disabled = false;
-      button.innerHTML = 'Send message <span>↗</span>';
+      button.innerHTML = `Send message <span>${arrowIconMarkup}</span>`;
     }
   });
   const assistantForm = document.getElementById('assistant-form');
   const assistantInput = document.getElementById('assistant-question');
   const assistantReplies = document.getElementById('assistant-replies');
   const assistantNote = document.querySelector('.assistant-note');
+  const assistantLeadForm = document.getElementById('assistant-lead-form');
+  const assistantLeadStatus = document.getElementById('assistant-lead-status');
   if (assistantForm && assistantInput && assistantReplies) {
     const history = [];
     const endpoint = apiEndpoint('/api/chat');
@@ -138,6 +141,20 @@
       assistantReplies.scrollTop = assistantReplies.scrollHeight;
       message.scrollIntoView({ block: 'nearest', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
       return message;
+    };
+    const showLeadForm = () => {
+      assistantForm.hidden = true;
+      if (assistantLeadForm) {
+        assistantLeadForm.hidden = false;
+        assistantLeadForm.querySelector('[name="name"]')?.focus();
+      }
+      if (assistantNote) assistantNote.textContent = 'Share your details with Yaseen to unlock 12 more questions today.';
+    };
+    const stopChatForToday = () => {
+      assistantInput.disabled = true;
+      const sendButton = assistantForm.querySelector('button');
+      if (sendButton) sendButton.disabled = true;
+      if (assistantNote) assistantNote.textContent = 'Portfolio only · today’s assistant limit reached. Please come back tomorrow.';
     };
     const cleanAssistantReply = text => text
       .replace(/\r\n?/g, '\n')
@@ -176,6 +193,7 @@
         if (!response.ok) {
           const error = new Error(body.error || 'The assistant is temporarily unavailable.');
           error.status = response.status;
+          error.code = body.code;
           throw error;
         }
         if (typeof body.reply !== 'string' || !body.reply.trim()) throw new Error('The assistant returned an empty answer.');
@@ -183,33 +201,82 @@
         history.push({ role: 'user', content: question }, { role: 'assistant', content: reply });
         pending.textContent = reply;
         if (Number.isInteger(body.remaining) && assistantNote) {
-          assistantNote.textContent = body.remaining === 0
-            ? 'Portfolio only · daily limit reached; try again tomorrow.'
-            : `Portfolio only · ${body.remaining} questions left today on this connection.`;
+          assistantNote.textContent = body.remaining === 0 && !body.leadSubmitted
+            ? 'Share your details with Yaseen to unlock 12 more questions today.'
+            : body.remaining === 0
+              ? 'Portfolio only · today’s assistant limit reached. Please come back tomorrow.'
+              : `Portfolio only · ${body.remaining} questions left today on this connection.`;
         }
-        if (body.remaining === 0) {
-          assistantInput.disabled = true;
-          sendButton.disabled = true;
+        if (body.remaining === 0 && body.leadSubmitted) {
+          stopChatForToday();
+        } else if (body.remaining === 0) {
+          showLeadForm();
         }
         assistantReplies.scrollTop = assistantReplies.scrollHeight;
       }).catch(error => {
         pending.textContent = error.name === 'AbortError'
           ? 'That took too long. Please try again.'
           : (error.message === 'Failed to fetch' ? 'Could not reach the AI service. Check the backend setup and try again.' : error.message);
-        if (error.status === 429) {
-          assistantInput.disabled = true;
-          sendButton.disabled = true;
-          if (assistantNote) assistantNote.textContent = 'Portfolio only · daily limit reached; try again tomorrow.';
+        if (error.status === 429 && error.code === 'LEAD_REQUIRED') {
+          showLeadForm();
+        } else if (error.status === 429 && error.code === 'DAILY_LIMIT_REACHED') {
+          stopChatForToday();
         }
         assistantReplies.scrollTop = assistantReplies.scrollHeight;
       }).finally(() => {
         clearTimeout(timeout);
         assistantForm.dataset.busy = 'false';
         sendButton.disabled = assistantInput.disabled;
-        sendButton.textContent = '↗';
-        assistantInput.focus();
+        sendButton.innerHTML = arrowIconMarkup;
+        if (!assistantForm.hidden && !assistantInput.disabled) assistantInput.focus();
       });
     });
+
+    if (assistantLeadForm) {
+      assistantLeadForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (assistantLeadForm.dataset.busy === 'true') return;
+        const submitButton = assistantLeadForm.querySelector('button[type="submit"]');
+        assistantLeadForm.dataset.busy = 'true';
+        if (submitButton) submitButton.disabled = true;
+        if (assistantLeadStatus) assistantLeadStatus.textContent = 'Sending your details securely…';
+        try {
+          const formData = new FormData(assistantLeadForm);
+          const response = await fetch(apiEndpoint('/api/contact'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              name: formData.get('name'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              consent: formData.get('consent') === 'on'
+            })
+          });
+          const body = await response.json().catch(() => ({}));
+          if (!response.ok || body.success !== true) throw new Error(body.error || 'We could not send your details. Please try again.');
+
+          assistantLeadForm.reset();
+          assistantLeadForm.hidden = true;
+          assistantForm.hidden = false;
+          assistantInput.disabled = false;
+          const sendButton = assistantForm.querySelector('button');
+          const remaining = Number.isInteger(body.remaining) ? body.remaining : 12;
+          if (remaining > 0) {
+            if (sendButton) sendButton.disabled = false;
+            if (assistantNote) assistantNote.textContent = `Your details were sent to Yaseen. You have ${remaining} more questions today.`;
+            addMessage(`Thanks — your details were sent to Yaseen. You can ask up to ${remaining} more questions today.`, 'assistant');
+            assistantInput.focus();
+          } else {
+            stopChatForToday();
+          }
+        } catch (error) {
+          if (assistantLeadStatus) assistantLeadStatus.textContent = error.message || 'We could not send your details. Please try again.';
+        } finally {
+          assistantLeadForm.dataset.busy = 'false';
+          if (submitButton) submitButton.disabled = false;
+        }
+      });
+    }
   }
 })();
 
