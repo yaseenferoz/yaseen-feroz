@@ -18,7 +18,7 @@ A responsive, build-free portfolio using HTML, CSS, and vanilla JavaScript. Open
 
 Reviewed the user's signed-in LinkedIn profile at https://www.linkedin.com/in/yaseen-feroz/ through the local browser: headline, About, four career roles, education, all 28 certifications, all 16 projects, all 69 skill entries, and language proficiencies.
 
-The site presents 16 projects: six featured and 10 in a native expandable archive. The portfolio includes Codekraft MA QA Quality and Campuskraft as requested. The final-year RF vehicle speed-control project is described under education. Project artwork is typographic, not a product screenshot. No unverified deployment URLs or performance metrics have been added.
+The site presents 17 projects: six featured and 11 in a native expandable archive. The portfolio includes the MA Quality Products e-commerce build and the in-development CampusKraft education ERP, with contribution details and links to their CodeKraft pages. The final-year RF vehicle speed-control project is described under education. Project artwork is typographic, not a product screenshot. No unverified deployment URLs or performance metrics have been added.
 
 All 28 certifications are listed, with six featured and 22 expandable. All 27 available credential URLs match the profile; JSpiders lists credential ID RAJ-J-18/149 without a public credential link. These are source-matched links, not a claim of independent issuer verification. LinkedIn redirect wrappers were replaced with their exact destination URLs.
 
