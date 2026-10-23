@@ -115,6 +115,10 @@
 }
 
 .icon-arrow { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; vertical-align: -0.15em; overflow: visible; }
+.icon-arrow-down, .icon-arrow-up { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; vertical-align: -0.15em; overflow: visible; }
+.text-link .icon-arrow-down { width: 14px; height: 14px; }
+.scroll-icon .icon-arrow-down { width: 14px; height: 14px; }
+footer .icon-arrow-up { width: 14px; height: 14px; }
 .button .icon-arrow { width: 16px; height: 16px; }
 .card-symbol .icon-arrow { width: 32px; height: 32px; }
 .contact-arrow .icon-arrow { width: 42px; height: 42px; }
@@ -134,3 +138,7 @@
 .assistant-lead-form button:disabled { opacity: .6; cursor: wait; }
 .assistant-lead-form button .icon-arrow { width: 14px; height: 14px; }
 #assistant-lead-status { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.4; }
+@media (max-width: 700px) {
+  .assistant-form input,
+  .assistant-lead-form label:not(.assistant-consent) input:not([type="checkbox"]) { font-size: 16px; }
+}
